@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Clone from repository') {
             steps {
-                git url: 'https://github.com/kanakraj321/2244_ica2_.git', branch: 'develop'
+                git url: 'https://github.com/kanakraj/2244_ica2.git', branch: 'develop'
             }
         }
 
