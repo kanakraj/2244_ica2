@@ -1,4 +1,3 @@
-  GNU nano 7.2                                                                                        Jenkinsfile *
 pipeline {
     agent any
     stages {
@@ -15,15 +14,15 @@ pipeline {
         }
         stage('Clone from repository') {
             steps {
-                git url: 'https://github.com/kanakraj/2244_ica2_.git', branch: 'develop', credentialsId: 'GIT'
+                git url: 'https://github.com/kanakraj321/2244_ica2_.git', branch: 'develop'
             }
         }
 
         stage('Build and run docker image') {
             steps {
-                sh 'sudo docker build -t kanakraj/2244_ica2:latest .'
-                sh "sudo docker tag kanakraj/2244_ica2:latest kanakraj/2244_ica2:develop-${env.BUILD_ID}"
-                sh 'sudo docker run -d -p 8081:80 kanakraj/2244_ica2:latest'
+                sh 'sudo docker build -t kanakraj321/2244_ica2:latest .'
+                sh "sudo docker tag kanakraj321/2244_ica2:latest kanakraj321/2244_ica2:develop-${env.BUILD_ID}"
+                sh 'sudo docker run -d -p 8081:80 kanakraj321/2244_ica2:latest'
             }
         }
 
@@ -34,21 +33,20 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub-auth', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh '''
                             sudo docker login -u ${USERNAME} -p ${PASSWORD}
-                            sudo docker push kanakraj/2244_ica2:latest
+                            sudo docker push kanakraj321/2244_ica2:latest
                         '''
-                        sh "sudo docker push kanakraj/2244_ica2:develop-${env.BUILD_ID}"
+                        sh "sudo docker push kanakraj321/2244_ica2:develop-${env.BUILD_ID}"
                     }
             }
         }
 
         stage('testing') {
             steps {
-                sh 'curl -I 34.247.70.128:8081'
+                sh 'curl -I 54.247.149.215:8081'
             }
         }
 
 
     }
 }
-
 
