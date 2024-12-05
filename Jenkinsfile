@@ -8,13 +8,10 @@ pipeline {
             }
         }
 
-
         stage('testing') {
             steps {
                 sh 'curl -I 54.247.149.215:8082'
             }
-        }
-
-    
-    }
+        }
+    }
 }
