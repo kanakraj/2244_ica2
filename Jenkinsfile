@@ -1,3 +1,4 @@
+  GNU nano 7.2                                                                                        Jenkinsfile *
 pipeline {
     agent any
     stages {
@@ -21,9 +22,9 @@ pipeline {
         stage('Build and run docker image') {
             steps {
                 sh 'sudo docker build -t kanakraj/2244_ica2:latest .'
-                sh "sudo docker tag kanakraj/2244_ica2:latest kanakraj/2244_ica2:develop-${env.BUILD_ID}" 
+                sh "sudo docker tag kanakraj/2244_ica2:latest kanakraj/2244_ica2:develop-${env.BUILD_ID}"
                 sh 'sudo docker run -d -p 8081:80 kanakraj/2244_ica2:latest'
-            } 
+            }
         }
 
 
@@ -46,6 +47,8 @@ pipeline {
             }
         }
 
-    
+
     }
 }
+
+
