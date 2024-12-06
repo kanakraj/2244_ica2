@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Deploy container into App server') {
             steps {
-                sshagent(['kanakraj321']) {
+                sshagent(['vagrant']) {
                     sh '''
                         ssh vagrant@54.78.149.249 -o StrictHostKeyChecking=no "sudo docker pull kanakraj321/2244_ica2:latest"
                         ssh vagrant@54.78.149.249 -o StrictHostKeyChecking=no "sudo docker stop exam-nginx || true && sudo docker rm exam-nginx || true"
